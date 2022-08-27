@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mt-5">
+                <input id="num1" type="text" class="form-control" placeholder="Enter number 1"><br>
+                <input id="num2" type="text" class="form-control" placeholder="Enter number 2"><br>
+                <input id="op" type="text" class="form-control" placeholder="Enter the operator"><br>
+                <button class="btn btn-success btn-lg" onclick="result()">Result</button>&nbsp;
+            </div>
+            <div class="col-6 mt-5">
+                <h1>Results:</h1>
+                <h1 id="resdata"></h1>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    function result() {
+        let n1 = parseInt(document.getElementById('num1').value)
+        let n2 = parseInt(document.getElementById('num2').value)
+        let op = document.getElementById('op').value
+        if (document.getElementById('op').value == 0) {
+            alert('Insufficient Entries to calculate')
+        }
+        else {
+            var values = new calculate(n1, n2, op)
+            let result = values.operation()
+            console.log(result);
+            document.getElementById('resdata').innerHTML = n1 + op + n2 + '=' + result
+            document.getElementById('num1').value = ''
+            document.getElementById('num2').value = ''
+            document.getElementById('op').value = ''
+        }
+
+    }
+
+    class calculate {
+        constructor(num1, num2, op) {
+            this.a = num1
+            this.b = num2
+            this.op = op
+        }
+
+        operation() {
+            let num1 = this.a
+            let num2 = this.b
+            let op = this.op
+            let res
+
+            if (op == '+') {
+                return res = num1 + num2
+            }
+            if (op == '-') {
+                return res = num1 - num2
+
+            }
+            if (op == '*') {
+                return res = num1 * num2
+
+            }
+            if (op == '/') {
+                if (num2 == 0) {
+                    console.log("Division by zero is not defined");
+                }
+                else {
+                    return res = num1 / num2
+                }
+            }
+        }
+
+    }
+
+</script>
+
+</html>
